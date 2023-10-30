@@ -1,19 +1,25 @@
 <?php
 include 'koneksi.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    $data = json_decode(file_get_contents("php://input"), true);
+// Periksa apakah metode permintaan adalah POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Ambil ID alumni yang akan dihapus dari parameter POST
+    $alumniId = $_POST['alumniId'];
 
-    $id = $data['id']; // ID alumni yang akan dihapus
+    // Query SQL untuk menghapus data berdasarkan ID
+    $sql = "DELETE FROM alumni WHERE id_alumni = $alumniId";
 
-    $query_delete = "DELETE FROM alumni WHERE id = $id";
-    $result = mysqli_query($koneksi, $query_delete);
-
-    if ($result) {
-        echo json_encode(array("message" => "Data alumni berhasil dihapus"));
+    if ($koneksi->query($sql) === TRUE) {
+        // Data berhasil dihapus
+        echo json_encode(array('message' => 'Data berhasil dihapus'));
     } else {
-        echo json_encode(array("message" => "Gagal menghapus data alumni"));
+        // Kesalahan saat menghapus data
+        echo json_encode(array('message' => 'Gagal menghapus data: ' . $koneksi->error));
     }
 } else {
-    echo json_encode(array("message" => "Metode permintaan tidak valid"));
+    // Jika metode permintaan bukan POST
+    echo json_encode(array('message' => 'Metode permintaan tidak valid'));
 }
+
+$koneksi->close();
+?>
