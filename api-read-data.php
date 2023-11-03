@@ -2,10 +2,7 @@
 include 'koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $query_read = "SELECT a.*, j.nama_jurusan, t.tahun_lulus
-    FROM alumni a
-    JOIN jurusan j ON a.id_jurusan = j.id_jurusan
-    JOIN tahun_lulus t ON a.id_tahun_lulus = t.id_tahun_lulus";
+    $query_read = "SELECT * FROM alumni";
     
     $result = mysqli_query($koneksi, $query_read);
 
