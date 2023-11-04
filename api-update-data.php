@@ -26,21 +26,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (mysqli_num_rows($result_check) > 0) {
             // Update the alumni data
-            $update_alumni = "UPDATE alumni AS a
-                                JOIN tahun_lulus AS t ON a.id_tahun_lulus = t.id_tahun_lulus
-                                JOIN jurusan AS j ON a.id_jurusan = j.id_jurusan
-                                SET a.npm = '$npm',
-                                    a.nama = '$nama',
-                                    a.tempat_lahir = '$tempat_lahir',
-                                    a.tgl_lahir = '$tgl_lahir',
-                                    a.jk = '$jk',
-                                    a.email = '$email',
-                                    a.no_hp = '$no_hp',
-                                    a.alamat = '$alamat',
-                                    a.foto = '$foto',
-                                    a.id_tahun_lulus = '$id_tahun_lulus',
-                                    a.id_jurusan = '$id_jurusan'
-                                WHERE a.id_alumni = '$id_alumni';";
+            $update_alumni = "UPDATE alumni
+                                SET npm = '$npm',
+                                    nama = '$nama',
+                                    tempat_lahir = '$tempat_lahir',
+                                    tgl_lahir = '$tgl_lahir',
+                                    jk = '$jk',
+                                    email = '$email',
+                                    no_hp = '$no_hp',
+                                    alamat = '$alamat',
+                                    foto = '$foto',
+                                    id_tahun_lulus = '$id_tahun_lulus',
+                                    id_jurusan = '$id_jurusan'
+                                WHERE id_alumni = '$id_alumni'";
 
             $msql_update = mysqli_query($koneksi, $update_alumni);
 
