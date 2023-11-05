@@ -10,7 +10,8 @@ $jk = $_POST['jk'];
 $email = $_POST['email'];
 $no_hp = $_POST['no_hp'];
 $alamat = $_POST['alamat'];
-$foto = $_POST['foto'];
+$img = $_POST['foto'];
+$foto = base64_decode($img);
 $id_tahun_lulus = $_POST['id_tahun_lulus'];
 $id_jurusan = $_POST['id_jurusan'];
 
