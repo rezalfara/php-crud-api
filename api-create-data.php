@@ -10,8 +10,7 @@ $jk = $_POST['jk'];
 $email = $_POST['email'];
 $no_hp = $_POST['no_hp'];
 $alamat = $_POST['alamat'];
-$img = $_POST['foto'];
-$foto = base64_decode($img);
+$foto = base64_decode($_POST['foto']);
 $id_tahun_lulus = $_POST['id_tahun_lulus'];
 $id_jurusan = $_POST['id_jurusan'];
 
@@ -23,8 +22,14 @@ $result = mysqli_num_rows($msql);
 
 if (!empty($npm) && !empty($nama) && !empty($tempat_lahir) && !empty($tgl_lahir) && !empty($jk) && !empty($email) && !empty($no_hp) && !empty($alamat) && !empty($foto) && !empty($id_tahun_lulus) && !empty($id_jurusan)) {
     if ($result == 0) {
+
+        // Simpan gambar ke server (disesuaikan dengan lokasi penyimpanan gambar Anda)
+        $fotoName = $npm . '.jpg'; // Misalnya, nama file sesuai dengan NPM
+        $uploadPath = 'img/' . $fotoName;
+        file_put_contents($uploadPath, $foto);
+
         $create_alumni = "INSERT INTO alumni (npm, nama, tempat_lahir, tgl_lahir, jk, email, no_hp, alamat, foto, id_tahun_lulus, id_jurusan) 
-                    VALUES ('$npm', '$nama', '$tempat_lahir', '$tgl_lahir', '$jk', '$email', '$no_hp', '$alamat', '$foto', '$id_tahun_lulus', '$id_jurusan')";
+                    VALUES ('$npm', '$nama', '$tempat_lahir', '$tgl_lahir', '$jk', '$email', '$no_hp', '$alamat', '$fotoName', '$id_tahun_lulus', '$id_jurusan')";
 
         $msql_create = mysqli_query($koneksi, $create_alumni);
 

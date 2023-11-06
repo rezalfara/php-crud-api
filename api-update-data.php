@@ -19,12 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_jurusan = $_POST['id_jurusan'];
 
     // Check if all required fields are provided
-    if (!empty($npm) && !empty($nama) && !empty($tempat_lahir) && !empty($tgl_lahir) && !empty($jk) && !empty($email) && !empty($no_hp) && !empty($alamat) && !empty($foto) && !empty($id_tahun_lulus) && !empty($id_jurusan)) {
+    if (!empty($npm) || !empty($nama) || !empty($tempat_lahir) || !empty($tgl_lahir) || !empty($jk) || !empty($email) || !empty($no_hp) || !empty($alamat) || !empty($foto) || !empty($id_tahun_lulus) || !empty($id_jurusan)) {
         // Check if the alumni with the given NPM exists
         $query_check = "SELECT * FROM alumni WHERE id_alumni = '" . $id_alumni . "'";
         $result_check = mysqli_query($koneksi, $query_check);
 
         if (mysqli_num_rows($result_check) > 0) {
+
             // Update the alumni data
             $update_alumni = "UPDATE alumni
                                 SET npm = '$npm',
