@@ -24,7 +24,7 @@ if (!empty($npm) && !empty($nama) && !empty($tempat_lahir) && !empty($tgl_lahir)
     if ($result == 0) {
 
         // Simpan gambar ke server (disesuaikan dengan lokasi penyimpanan gambar Anda)
-        $fotoName = $npm . '.jpg'; // Misalnya, nama file sesuai dengan NPM
+        $fotoName = $nama . '.jpg'; // Misalnya, nama file sesuai dengan NPM
         $uploadPath = 'img/' . $fotoName;
         file_put_contents($uploadPath, $foto);
 

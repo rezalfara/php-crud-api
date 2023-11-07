@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $no_hp = $_POST['no_hp'];
     $alamat = $_POST['alamat'];
-    $foto = $_POST['foto'];
+    $foto = base64_decode($_POST['foto']);
     $id_tahun_lulus = $_POST['id_tahun_lulus'];
     $id_jurusan = $_POST['id_jurusan'];
 
@@ -26,6 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (mysqli_num_rows($result_check) > 0) {
 
+            // Simpan gambar ke server (disesuaikan dengan lokasi penyimpanan gambar Anda)
+            $fotoName = $nama . '-' . uniqid() . '.jpg'; // Misalnya, nama file sesuai dengan NPM
+            $uploadPath = 'img/' . $fotoName;
+            file_put_contents($uploadPath, $foto);
+
             // Update the alumni data
             $update_alumni = "UPDATE alumni
                                 SET npm = '$npm',
@@ -36,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     email = '$email',
                                     no_hp = '$no_hp',
                                     alamat = '$alamat',
-                                    foto = '$foto',
+                                    foto = '$fotoName',
                                     id_tahun_lulus = '$id_tahun_lulus',
                                     id_jurusan = '$id_jurusan'
                                 WHERE id_alumni = '$id_alumni'";
