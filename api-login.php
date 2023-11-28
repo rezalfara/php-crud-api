@@ -5,7 +5,7 @@ include 'koneksi.php';
 $username = $_GET['username'];
 $password = $_GET['password'];
 
-$cek = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
+$cek = "SELECT * FROM admin WHERE BINARY username = '$username' AND BINARY password = '$password'";
 $msql = mysqli_query($koneksi, $cek);
 $result = mysqli_num_rows($msql);
 

@@ -5,7 +5,7 @@ include 'koneksi.php';
 $npm = $_GET['npm'];
 $password = $_GET['password'];
 
-$cek = "SELECT * FROM alumni WHERE npm = '$npm' AND password = '$password'";
+$cek = "SELECT * FROM alumni WHERE BINARY npm = '$npm' AND BINARY password = '$password'";
 $msql = mysqli_query($koneksi, $cek);
 $result = mysqli_num_rows($msql);
 
