@@ -3,7 +3,9 @@
 include 'koneksi.php';
 
 $npm = $_POST['npm'];
+$nama = $_POST['nama'];
 $password = $_POST['password'];
+$foto = base64_decode($_POST['foto']);
 $id_tahun_lulus = $_POST['id_tahun_lulus'];
 $id_jurusan = $_POST['id_jurusan'];
 
@@ -13,9 +15,14 @@ $msql = mysqli_query($koneksi, $query_register);
 
 $result = mysqli_num_rows($msql);
 
-if (!empty($npm) && !empty($password) && !empty($id_tahun_lulus && !empty($id_jurusan))) {
+if (!empty($npm) && !empty($nama) && !empty($password) && !empty($foto) && !empty($id_tahun_lulus) && !empty($id_jurusan)) {
     if ($result == 0) {
-        $regis = "INSERT INTO alumni (npm, password, id_tahun_lulus, id_jurusan) VALUES ('$npm', '$password', '$id_tahun_lulus', '$id_jurusan')";
+        // Simpan gambar ke server (disesuaikan dengan lokasi penyimpanan gambar Anda)
+        $fotoName = $nama . '.jpg'; // Misalnya, nama file sesuai dengan NPM
+        $uploadPath = 'img/' . $fotoName;
+        file_put_contents($uploadPath, $foto);
+
+        $regis = "INSERT INTO alumni (npm, nama, password, foto, id_tahun_lulus, id_jurusan) VALUES ('$npm', '$nama', '$password', '$fotoName', '$id_tahun_lulus', '$id_jurusan')";
 
         $msql_regis = mysqli_query($koneksi, $regis);
 
