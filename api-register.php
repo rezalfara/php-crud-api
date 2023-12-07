@@ -17,7 +17,7 @@ $result = mysqli_num_rows($msql);
 if (!empty($username) && !empty($nama) && !empty($password) && !empty($alamat) && !empty($foto) ) {
     if ($result == 0) {
         // Simpan gambar ke server (disesuaikan dengan lokasi penyimpanan gambar Anda)
-        $fotoName = $nama . '.jpg'; // Misalnya, nama file sesuai dengan NPM
+        $fotoName = $username . '.jpg'; // Misalnya, nama file sesuai dengan NPM
         $uploadPath = 'imgAdmin/' . $fotoName;
         file_put_contents($uploadPath, $foto);
 

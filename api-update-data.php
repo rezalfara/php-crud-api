@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (mysqli_num_rows($result_check) > 0) {
 
             // Simpan gambar ke server (disesuaikan dengan lokasi penyimpanan gambar Anda)
-            $fotoName = $nama . '-' . uniqid() . '.jpg'; // Misalnya, nama file sesuai dengan NPM
+            $fotoName = $id_alumni . '-' . uniqid() . '.jpg'; // Misalnya, nama file sesuai dengan NPM
             $uploadPath = 'img/' . $fotoName;
             file_put_contents($uploadPath, $foto);
 
