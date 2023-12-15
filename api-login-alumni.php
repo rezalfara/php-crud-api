@@ -11,7 +11,7 @@ $result = mysqli_num_rows($msql);
 
 if (!empty($npm) && !empty($password)) {
     if ($result == 0) {
-        echo "0";
+        echo "NPM atau Password Salah";
     }else{
         echo "Selamat Datang";
     }

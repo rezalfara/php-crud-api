@@ -11,7 +11,7 @@ $result = mysqli_num_rows($msql);
 
 if (!empty($username) && !empty($password)) {
     if ($result == 0) {
-        echo "0";
+        echo "Username atau Password Salah";
     }else{
         echo "Selamat Datang";
     }
